@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Dictionary | College WAD Edition - Search. Learn. Improve.</title>
+  
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap" rel="stylesheet" />
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ================================================================= -->
+  <!-- TOP NAVIGATION HEADER                                             -->
+  <!-- ================================================================= -->
+  <header class="site-header">
+    <div class="header-container">
+      
+      <!-- Brand & Logo -->
+      <a href="javascript:void(0)" class="brand-logo" id="headerLogoLink" aria-label="Smart Dictionary Home">
+        <div class="logo-icon-wrap">
+          <svg class="logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="32" height="32" rx="8" fill="#091426"/>
+            <path d="M7 10C7 8.89543 7.89543 8 9 8H15V24H9C7.89543 24 7 23.1046 7 22V10Z" fill="#3B82F6"/>
+            <path d="M17 8H23C24.1046 8 25 8.89543 25 10V22C25 23.1046 24.1046 24 23 24H17V8Z" fill="#2563EB" fill-opacity="0.85"/>
+            <path d="M12 13H20M12 17H18" stroke="white" stroke-width="1.75" stroke-linecap="round"/>
+            <circle cx="22" cy="11" r="2" fill="#38BDF8"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">Smart Dictionary</span>
+          <span class="brand-subtitle">COLLEGE WAD EDITION</span>
+        </div>
+      </a>
+
+      <!-- Mobile Menu Toggle Button -->
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Navigation Menu">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+
+      <!-- Center Navigation Pills -->
+      <nav class="nav-segmented-track" id="navMenu">
+        <a href="#home" class="nav-pill active" id="navHomePill">Home</a>
+        <a href="#favorites" class="nav-pill" id="navFavoritesPill">
+          Favorites <span class="badge-count" id="favCount">8</span>
+        </a>
+        <a href="#history" class="nav-pill" id="navHistoryPill">Search History</a>
+        <a href="#quiz" class="nav-pill" id="navQuizPill">Vocabulary Quiz</a>
+      </nav>
+
+      <!-- Right Header Actions -->
+      <div class="header-actions">
+        <!-- Quick Lookup Command Pill -->
+        <button class="quick-lookup-btn" id="quickLookupTrigger" title="Press Ctrl+K or ⌘K to search">
+          <svg class="action-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="8.5" cy="8.5" r="5.5"/>
+            <path d="M13 13L17.5 17.5"/>
+          </svg>
+          <span class="quick-lookup-text">Quick lookup</span>
+          <kbd class="kbd-badge">⌘K</kbd>
+        </button>
+
+        <!-- User Profile Pill & Dropdown -->
+        <div class="user-profile-wrapper">
+          <div class="user-profile-badge" id="userProfileBadge" title="Scholar Profile (Click to Sign In or manage account)" role="button" tabindex="0">
+            <div class="avatar-wrap">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80" alt="Scholar Alex Profile" class="avatar-img" id="userAvatarImg" />
+              <span class="online-indicator" id="userOnlineIndicator" aria-label="Online"></span>
+            </div>
+            <div class="user-meta">
+              <span class="user-name" id="userNameDisplay">Scholar Alex</span>
+              <span class="user-role" id="userRoleDisplay">
+                <span class="dot-green"></span>Undergraduate
+              </span>
+            </div>
+            <svg class="profile-chevron-icon" viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 6l4 4 4-4"/>
+            </svg>
+          </div>
+
+          <!-- User Profile Dropdown Menu (Shown on click when logged in) -->
+          <div class="user-dropdown-menu hidden" id="userDropdownMenu">
+            <div class="dropdown-header">
+              <div class="dropdown-avatar-wrap">
+                <div class="dropdown-avatar-circle" id="dropdownAvatarCircle">A</div>
+              </div>
+              <div class="dropdown-info">
+                <span class="dropdown-name" id="dropdownUserName">Scholar Alex</span>
+                <span class="dropdown-email" id="dropdownUserEmail">alex@college.edu</span>
+              </div>
+            </div>
+            <div class="dropdown-badge-pill">
+              <span class="dot-green"></span>
+              <span id="dropdownRoleText">Active Scholar Session</span>
+            </div>
+            <div class="dropdown-divider"></div>
+            <button type="button" class="dropdown-item logout-item" id="dropdownLogoutBtn">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                <polyline points="16 17 21 12 16 7"></polyline>
+                <line x1="21" y1="12" x2="9" y2="12"></line>
+              </svg>
+              <span>Sign Out</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ================================================================= -->
+  <!-- MAIN CONTENT (Switches between Home View, Word Result, Favorites) -->
+  <!-- ================================================================= -->
+  <main class="main-content">
+
+    <!-- =============================================================== -->
+    <!-- VIEW 1: HOME / DISCOVERY VIEW                                   -->
+    <!-- =============================================================== -->
+    <div id="homeView" class="page-view">
+      
+      <!-- HERO SEARCH SECTION -->
+      <section class="hero-section">
+        <div class="hero-container">
+          
+          <!-- Category Sub-tag -->
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            <span class="badge-text">ACADEMIC LEXICON 2025 · EXPAND YOUR VOCABULARY</span>
+          </div>
+
+          <!-- Main H1 Title -->
+          <h1 class="hero-title">Search. Learn. Improve.</h1>
+
+          <!-- Subtitle -->
+          <p class="hero-subtitle">
+            Your collegiate companion for semantic mastery, phonetics, and academic writing.
+          </p>
+
+          <!-- Main Search Bar Card -->
+          <div class="search-bar-wrapper">
+            <form class="search-form" id="searchForm">
+              <div class="search-input-group">
+                <span class="search-icon-box">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="M21 21L16.65 16.65"/>
+                  </svg>
+                </span>
+                
+                <input 
+                  type="text" 
+                  id="mainSearchInput" 
+                  class="search-input" 
+                  placeholder="Look up definitions, idioms, roots..." 
+                  autocomplete="off" 
+                  aria-label="Search dictionary"
+                />
+
+                <div class="search-right-affordances">
+                  <span class="search-kbd-chip">⌘K</span>
+                  <button type="button" class="search-mic-btn" id="voiceSearchBtn" title="Voice Search">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                      <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                      <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                      <line x1="12" y1="19" x2="12" y2="23"/>
+                      <line x1="8" y1="23" x2="16" y2="23"/>
+                    </svg>
+                  </button>
+                  <button type="submit" class="search-submit-btn" id="searchSubmitBtn">
+                    <span>Search Lexicon</span>
+                    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="4" y1="10" x2="16" y2="10"/>
+                      <polyline points="10 4 16 10 10 16"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- Trending Suggestions Cloud -->
+          <div class="trending-tags-row">
+            <span class="trending-label">TRENDING SUGGESTIONS:</span>
+            <div class="tags-cloud">
+              <button class="trend-chip" data-word="Resilient">
+                <span>Resilient</span>
+                <svg class="trend-icon-spark" viewBox="0 0 16 16" fill="none">
+                  <path d="M2 12L7 7L10 10L14 4" stroke="#F43F5E" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M10.5 4H14V7.5" stroke="#F43F5E" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <button class="trend-chip" data-word="Serendipity">
+                <span>Serendipity</span>
+                <span class="chip-sparkle">✨</span>
+              </button>
+              <button class="trend-chip" data-word="Eloquent">
+                <span>Eloquent</span>
+              </button>
+              <button class="trend-chip" data-word="Pragmatic">
+                <span>Pragmatic</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- TWO-COLUMN DISCOVERY SECTION -->
+      <section class="discovery-section">
+        <div class="discovery-container">
+          
+          <!-- LEFT COLUMN (Word of the Day + Recent Lookups) -->
+          <div class="discovery-left-col">
+            
+            <!-- Card: Word of the Day -->
+            <article class="wotd-card card-surface" id="wotdCard">
+              <!-- Header: Tag & Bookmark -->
+              <div class="wotd-top-bar">
+                <div class="wotd-badge">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <rect x="3" y="4" width="14" height="13" rx="2"/>
+                    <line x1="13" y1="2" x2="13" y2="6"/>
+                    <line x1="7" y1="2" x2="7" y2="6"/>
+                    <line x1="3" y1="9" x2="17" y2="9"/>
+                  </svg>
+                  <span>WORD OF THE DAY</span>
+                </div>
+                <button class="favorite-toggle-btn" id="favoriteToggleBtn" aria-label="Save to Favorites" title="Save Ephemeral to Favorites">
+                  <svg class="star-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                  </svg>
+                </button>
+              </div>
+
+              <!-- Headword & Part of Speech -->
+              <div class="wotd-title-group">
+                <h2 class="wotd-word">Ephemeral</h2>
+                <span class="pos-badge pos-adjective">ADJECTIVE</span>
+              </div>
+
+              <!-- Phonetics & Audio Pronunciation -->
+              <div class="phonetics-row">
+                <span class="phonetic-text">/ɪˈfem.ər.əl/</span>
+                <button class="audio-pronounce-btn" id="playAudioBtn" title="Listen to pronunciation">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+                  </svg>
+                  <span class="audio-label">[ UK / US ]</span>
+                </button>
+              </div>
+
+              <!-- Primary Definition -->
+              <div class="definition-block">
+                <p class="definition-text">
+                  <span class="def-num">1.</span> Lasting for a very short time; fleeting; transitory.
+                </p>
+              </div>
+
+              <!-- Collegiate Usage Callout Box -->
+              <div class="collegiate-usage-box">
+                <div class="usage-header">
+                  <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                  </svg>
+                  <span class="usage-title">COLLEGIATE USAGE</span>
+                </div>
+                <blockquote class="usage-quote">
+                  “Fashions are ephemeral, but true style endures.”
+                </blockquote>
+              </div>
+
+              <!-- Card Bottom Bar -->
+              <div class="wotd-footer-bar">
+                <button class="etymology-link" data-word="ephemeral">
+                  <span>Explore Etymology &amp; Nuance</span>
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <line x1="4" y1="10" x2="16" y2="10"/>
+                    <polyline points="10 4 16 10 10 16"/>
+                  </svg>
+                </button>
+
+                <!-- Decorative Book Icon -->
+                <div class="book-illu-icon" title="Academic Lexicon Reference">
+                  <svg viewBox="0 0 36 28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 6C13.5 3 6 3 2 6V24C6 21 13.5 21 18 24C22.5 21 30 21 34 24V6C30 3 22.5 3 18 6Z"/>
+                    <line x1="18" y1="6" x2="18" y2="24"/>
+                  </svg>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card: Recent Quick Lookups -->
+            <article class="recent-card card-surface">
+              <div class="recent-header">
+                <div class="recent-title-group">
+                  <svg class="recent-clock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                  </svg>
+                  <h3 class="recent-title">Recent Quick Lookups</h3>
+                </div>
+                <button class="clear-btn" id="clearRecentBtn">CLEAR</button>
+              </div>
+
+              <div class="recent-chips-list" id="recentChipsList">
+                <button class="recent-chip" data-word="Juxtaposition">
+                  <span class="chip-word">Juxtaposition</span>
+                  <span class="chip-time">12m ago</span>
+                  <svg class="chip-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <path d="M4 12L12 4M12 4H6M12 4V10"/>
+                  </svg>
+                </button>
+
+                <button class="recent-chip" data-word="Sycophant">
+                  <span class="chip-word">Sycophant</span>
+                  <span class="chip-time">45m ago</span>
+                  <svg class="chip-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <path d="M4 12L12 4M12 4H6M12 4V10"/>
+                  </svg>
+                </button>
+
+                <button class="recent-chip" data-word="Anachronism">
+                  <span class="chip-word">Anachronism</span>
+                  <span class="chip-time">2h ago</span>
+                  <svg class="chip-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <path d="M4 12L12 4M12 4H6M12 4V10"/>
+                  </svg>
+                </button>
+
+                <button class="recent-chip" data-word="Panacea">
+                  <span class="chip-word">Panacea</span>
+                  <span class="chip-time">Yesterday</span>
+                  <svg class="chip-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <path d="M4 12L12 4M12 4H6M12 4V10"/>
+                  </svg>
+                </button>
+
+                <button class="recent-chip" data-word="Enigma">
+                  <span class="chip-word">Enigma</span>
+                  <span class="chip-time">2d ago</span>
+                  <svg class="chip-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <path d="M4 12L12 4M12 4H6M12 4V10"/>
+                  </svg>
+                </button>
+              </div>
+            </article>
+
+          </div>
+
+          <!-- RIGHT COLUMN (Popular & Trending + Tip Box) -->
+          <div class="discovery-right-col">
+            
+            <!-- Card: Popular & Trending -->
+            <article class="trending-card card-surface">
+              <!-- Header -->
+              <div class="trending-header">
+                <div class="trending-title-wrap">
+                  <svg class="trending-main-icon" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                    <polyline points="17 6 23 6 23 12"/>
+                  </svg>
+                  <h3 class="trending-title">Popular &amp; Trending</h3>
+                </div>
+                <span class="time-filter-pill">Past 24 hours</span>
+              </div>
+
+              <!-- Ranked Words List -->
+              <div class="ranked-list">
+                
+                <!-- Item 1: Mellifluous -->
+                <div class="ranked-item" data-word="Mellifluous">
+                  <div class="ranked-item-header">
+                    <div class="word-rank-lockup">
+                      <span class="rank-index">1.</span>
+                      <span class="rank-word">Mellifluous</span>
+                      <span class="pos-badge-sm pos-adjective">ADJ.</span>
+                    </div>
+                    <div class="lookup-count">
+                      <span>3.4k lookups</span>
+                      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <path d="M3 11L11 3M11 3H5M11 3V9"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="ranked-phonetic">/ˈmɛl.ɪf.lu.əs/</div>
+                  <p class="ranked-def">Sweet or musical; pleasant to hear (resembling honey).</p>
+                </div>
+
+                <!-- Item 2: Ubiquitous -->
+                <div class="ranked-item" data-word="Ubiquitous">
+                  <div class="ranked-item-header">
+                    <div class="word-rank-lockup">
+                      <span class="rank-index">2.</span>
+                      <span class="rank-word">Ubiquitous</span>
+                      <span class="pos-badge-sm pos-adjective">ADJ.</span>
+                    </div>
+                    <div class="lookup-count">
+                      <span>2.9k lookups</span>
+                      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <path d="M3 11L11 3M11 3H5M11 3V9"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="ranked-phonetic">/juːˈbɪk.wɪ.təs/</div>
+                  <p class="ranked-def">Present, appearing, or found everywhere at once.</p>
+                </div>
+
+                <!-- Item 3: Equanimity -->
+                <div class="ranked-item" data-word="Equanimity">
+                  <div class="ranked-item-header">
+                    <div class="word-rank-lockup">
+                      <span class="rank-index">3.</span>
+                      <span class="rank-word">Equanimity</span>
+                      <span class="pos-badge-sm pos-noun">NOUN</span>
+                    </div>
+                    <div class="lookup-count">
+                      <span>2.1k lookups</span>
+                      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <path d="M3 11L11 3M11 3H5M11 3V9"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="ranked-phonetic">/ˌɛk.wəˈnɪm.ə.ti/</div>
+                  <p class="ranked-def">Mental calmness, composure, and evenness of temper in crisis.</p>
+                </div>
+
+                <!-- Item 4: Catalyst -->
+                <div class="ranked-item" data-word="Catalyst">
+                  <div class="ranked-item-header">
+                    <div class="word-rank-lockup">
+                      <span class="rank-index">4.</span>
+                      <span class="rank-word">Catalyst</span>
+                      <span class="pos-badge-sm pos-noun">NOUN</span>
+                    </div>
+                    <div class="lookup-count">
+                      <span>1.8k lookups</span>
+                      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <path d="M3 11L11 3M11 3H5M11 3V9"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="ranked-phonetic">/ˈkæt.əl.ɪst/</div>
+                  <p class="ranked-def">A person or event that precipitates rapid and impactful change.</p>
+                </div>
+
+              </div>
+
+              <!-- WAD Academic Discourse Tip Banner -->
+              <div class="discourse-tip-box">
+                <div class="tip-icon-wrap">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                    <path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/>
+                  </svg>
+                </div>
+                <p class="tip-text">
+                  <strong>WAD Discourse Tip:</strong> Always cross-reference nuance in APA 7th style citations.
+                </p>
+                <div class="tip-info-icon" title="Citation Guidelines">
+                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <circle cx="10" cy="10" r="8"/>
+                    <line x1="10" y1="9" x2="10" y2="14"/>
+                    <circle cx="10" cy="6" r="0.75" fill="currentColor"/>
+                  </svg>
+                </div>
+              </div>
+
+            </article>
+
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+    <!-- =============================================================== -->
+    <!-- VIEW 2: DEDICATED WORD RESULT VIEW (Google Stitch Design)       -->
+    <!-- =============================================================== -->
+    <div id="wordResultView" class="page-view hidden">
+      <div class="word-result-container">
+
+        <!-- Top Navigation Subheader Row -->
+        <div class="result-nav-subheader">
+          <button class="back-link-btn" id="backToHomeBtn" title="Back to Search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"/>
+            </svg>
+            <span>Search Results</span>
+          </button>
+          
+          <div class="subheader-right-group">
+            <span class="academic-category-tag">Academic Core</span>
+            <button class="share-icon-btn" id="shareWordBtn" title="Share this word">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="18" cy="5" r="3"/>
+                <circle cx="6" cy="12" r="3"/>
+                <circle cx="18" cy="19" r="3"/>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Dynamic Result Card Body Injected by JavaScript -->
+        <div id="wordResultDynamicContent">
+          <!-- Populated via script.js -->
+        </div>
+
+      </div>
+    </div>
+
+    <!-- =============================================================== -->
+    <!-- VIEW 3: FAVORITES / PERSONAL LEXICON VIEW (Google Stitch Design)-->
+    <!-- =============================================================== -->
+    <div id="favoritesView" class="page-view hidden">
+      <div class="favorites-container">
+        
+        <!-- Header Section -->
+        <div class="favorites-header-section">
+          <div class="favorites-header-text">
+            <span class="eyebrow-tag">PERSONAL LEXICON</span>
+            <div class="favorites-title-row">
+              <h1 class="favorites-main-title">My Saved Words</h1>
+              <div class="bookmark-collection-icon" title="Personal Lexicon">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                </svg>
+              </div>
+            </div>
+            <p class="favorites-subtitle" id="favSubtitleCount">8 words bookmarked for revision &amp; active recall.</p>
+          </div>
+        </div>
+
+        <!-- Mastery Readiness Banner Card -->
+        <div class="mastery-readiness-card card-surface">
+          <div class="mastery-top-row">
+            <div class="readiness-score-ring">
+              <span class="score-percent" id="readinessScorePercent">62%</span>
+            </div>
+            <div class="readiness-meta">
+              <div class="readiness-badge-lockup">
+                <span class="readiness-title">Mastery Readiness</span>
+                <span class="readiness-status-badge">Strong</span>
+              </div>
+              <p class="readiness-description" id="readinessDesc">5 of 8 words due for spaced retrieval today</p>
+            </div>
+          </div>
+          <div class="mastery-actions-row">
+            <button class="mastery-action-pill" id="favPracticeQuizBtn">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                <path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/>
+              </svg>
+              <div class="action-text-group">
+                <span class="action-bold">Practice Quiz</span>
+                <span class="action-sub">Review Favorites</span>
+              </div>
+            </button>
+
+            <button class="mastery-action-pill" id="exportListBtn">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              <div class="action-text-group">
+                <span class="action-bold">Export List</span>
+                <span class="action-sub">Anki / CSV</span>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Search & Filters inside Favorites -->
+        <div class="favorites-search-filter-wrap">
+          <div class="fav-search-input-box">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/>
+              <path d="M21 21L16.65 16.65"/>
+            </svg>
+            <input 
+              type="text" 
+              id="favFilterInput" 
+              class="fav-filter-input" 
+              placeholder="Search saved definitions, tags..." 
+              autocomplete="off" 
+            />
+          </div>
+
+          <div class="fav-filter-pills" id="favFilterPills">
+            <button class="fav-pill active" data-filter="all">All (<span id="filterAllCount">8</span>)</button>
+            <button class="fav-pill" data-filter="adjective">Adjectives (<span id="filterAdjCount">3</span>)</button>
+            <button class="fav-pill" data-filter="noun">Nouns (<span id="filterNounCount">3</span>)</button>
+            <button class="fav-pill" data-filter="verb">Verbs (<span id="filterVerbCount">2</span>)</button>
+          </div>
+        </div>
+
+        <!-- Saved Words Cards List -->
+        <div class="saved-words-list" id="savedWordsList">
+          <!-- Populated via script.js -->
+        </div>
+
+        <!-- Spaced Repetition Tip Box -->
+        <div class="spaced-repetition-card">
+          <div class="rep-icon-wrap">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7z"/>
+            </svg>
+          </div>
+          <div class="rep-content">
+            <h4 class="rep-title">Spaced Repetition Tip</h4>
+            <p class="rep-text">
+              Words studied at 1-day, 3-day, and 7-day intervals have a 3.4x higher long-term retention rate. Star words whenever reading scholarly journals to automatically queue them into your daily review streak.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- =============================================================== -->
+    <!-- VIEW 4: SEARCH HISTORY VIEW (Google Stitch Design)              -->
+    <!-- =============================================================== -->
+    <div id="historyView" class="page-view hidden">
+      <div class="history-container">
+        
+        <!-- Learning Velocity Banner Card -->
+        <div class="learning-velocity-card card-surface">
+          <div class="velocity-top-header">
+            <div class="velocity-eyebrow-wrap">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                <polyline points="17 6 23 6 23 12"/>
+              </svg>
+              <span class="velocity-eyebrow-text">LEARNING VELOCITY</span>
+            </div>
+            <span class="top-learner-badge">Top 10% Learner</span>
+          </div>
+
+          <div class="velocity-metrics-grid">
+            <div class="velocity-metric-col">
+              <span class="velocity-big-number" id="historyWeeklyCount">5</span>
+              <span class="velocity-metric-label">Words explored this week</span>
+            </div>
+            <div class="velocity-metric-col">
+              <span class="velocity-category-title" id="historyTopCategory">Academic Lexicon</span>
+              <span class="velocity-metric-label">Most explored category</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Search History Header Row -->
+        <div class="history-header-section">
+          <div class="history-header-left">
+            <h1 class="history-main-title">Search History</h1>
+            <p class="history-subtitle">Review, revise, and bookmark your linguistic steps</p>
+          </div>
+          <button class="clear-all-history-btn" id="clearAllHistoryBtn" title="Clear all search history">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+            </svg>
+            <span>Clear All</span>
+          </button>
+        </div>
+
+        <!-- Filter Search Input -->
+        <div class="history-filter-search-box">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="4" y1="6" x2="20" y2="6"/>
+            <line x1="4" y1="12" x2="14" y2="12"/>
+            <line x1="4" y1="18" x2="8" y2="18"/>
+          </svg>
+          <input 
+            type="text" 
+            id="historyFilterInput" 
+            class="history-filter-input" 
+            placeholder="Filter previously viewed words..." 
+            autocomplete="off" 
+          />
+        </div>
+
+        <!-- Spaced Repetition Tip Box -->
+        <div class="history-tip-card card-surface">
+          <div class="history-tip-content">
+            <span class="history-tip-eyebrow">SPACED REPETITION TIP</span>
+            <h4 class="history-tip-title">Revisit to solidify recall</h4>
+            <p class="history-tip-text">
+              Reviewing words within 24h triples retention stability.
+            </p>
+          </div>
+          <div class="history-tip-bulb-wrap">
+            <div class="tip-bulb-glow">
+              <span class="tip-bulb-icon">💡</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grouped Search History List Container -->
+        <div class="history-groups-list" id="historyGroupsList">
+          <!-- Dynamically populated via script.js -->
+        </div>
+
+      </div>
+    </div>
+
+    <!-- =============================================================== -->
+    <!-- VIEW 5: VOCABULARY QUIZ VIEW (Google Stitch Design)             -->
+    <!-- =============================================================== -->
+    <div id="quizView" class="page-view hidden">
+      <div class="quiz-container">
+        
+        <!-- Quiz Top Header: Session & Points -->
+        <div class="quiz-top-bar">
+          <div class="quiz-session-info">
+            <div class="quiz-session-icon">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <polygon points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <div class="quiz-session-text">
+              <span class="quiz-session-title">Daily Vocabulary Quiz</span>
+              <span class="quiz-session-sub">Session #42 • Collegiate Lexicon</span>
+            </div>
+          </div>
+          <div class="quiz-xp-badge" id="quizXpBadge">
+            <span class="xp-star">✪</span>
+            <span class="xp-points-text" id="quizXpText">200 pts</span>
+          </div>
+        </div>
+
+        <!-- Progress Indicator -->
+        <div class="quiz-progress-section">
+          <div class="quiz-progress-header">
+            <span class="quiz-progress-label">Progress</span>
+            <span class="quiz-progress-counter" id="quizProgressCounter">Question 1 of 5</span>
+          </div>
+          <div class="quiz-progress-track">
+            <div class="quiz-progress-fill" id="quizProgressFill" style="width: 20%;"></div>
+          </div>
+        </div>
+
+        <!-- Quiz Dynamic Content Card (Populated by script.js) -->
+        <div id="quizDynamicContent">
+          <!-- Populated via script.js -->
+        </div>
+
+        <!-- Bottom Stats Row -->
+        <div class="quiz-bottom-stats-row" id="quizBottomStatsRow">
+          <div class="quiz-stat-card card-surface">
+            <span class="stat-icon-emoji">🔥</span>
+            <div class="stat-text-wrap">
+              <span class="stat-label">Daily Habit</span>
+              <span class="stat-val">3-day streak</span>
+            </div>
+          </div>
+          <div class="quiz-stat-card card-surface">
+            <span class="stat-icon-emoji">🏅</span>
+            <div class="stat-text-wrap">
+              <span class="stat-label">Accuracy</span>
+              <span class="stat-val" id="quizAccuracyVal">100% Correct</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- GRE High-Frequency Deck Banner -->
+        <div class="quiz-deck-banner card-surface" id="quizDeckBanner">
+          <div class="deck-icon-wrap">
+            <span class="deck-emoji">📖</span>
+          </div>
+          <div class="deck-info">
+            <span class="deck-title">GRE High-Frequency Deck</span>
+            <span class="deck-desc">Added 12 new collegiate terms today</span>
+          </div>
+          <svg class="deck-arrow" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M6 12L10 8L6 4"/>
+          </svg>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ================================================================= -->
+  <!-- MOBILE BOTTOM NAVIGATION (Google Stitch Mobile Nav)               -->
+  <!-- ================================================================= -->
+  <nav class="mobile-bottom-nav">
+    <button class="bottom-nav-item active" id="bottomNavHome">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/>
+        <path d="M21 21L16.65 16.65"/>
+      </svg>
+      <span>Home</span>
+    </button>
+    <button class="bottom-nav-item" id="bottomNavFav">
+      <div class="bottom-nav-badge-wrap">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+        <span class="bottom-fav-count" id="bottomFavCount">8</span>
+      </div>
+      <span>Favorites</span>
+    </button>
+    <button class="bottom-nav-item" id="bottomNavHistory">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"/>
+        <polyline points="12 6 12 12 16 14"/>
+      </svg>
+      <span>History</span>
+    </button>
+    <button class="bottom-nav-item" id="bottomNavQuiz">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+        <path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/>
+      </svg>
+      <span>Quiz</span>
+    </button>
+  </nav>
+
+  <!-- ================================================================= -->
+  <!-- SITE FOOTER                                                       -->
+  <!-- ================================================================= -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      
+      <!-- Brand & Copyright -->
+      <div class="footer-left">
+        <span class="footer-brand">Smart Dictionary</span>
+        <span class="footer-divider">|</span>
+        <span class="footer-copyright">
+          &copy; 2024 College Academic Writing &amp; Discourse (WAD). All rights reserved.
+        </span>
+      </div>
+
+      <!-- Quick Academic Links -->
+      <nav class="footer-nav">
+        <a href="#handbook" class="footer-link">Academic Handbook</a>
+        <a href="#citation" class="footer-link">Citation Guide</a>
+        <a href="#library" class="footer-link">Library Resources</a>
+        <a href="#help" class="footer-link">Help Desk</a>
+      </nav>
+
+    </div>
+  </footer>
+
+  <!-- ================================================================= -->
+  <!-- AUTHENTICATION MODAL (Google Stitch Design: Sign In & Register)  -->
+  <!-- ================================================================= -->
+  <div class="auth-modal-overlay hidden" id="authModalOverlay" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
+    <div class="auth-modal-backdrop" id="authModalBackdrop"></div>
+    
+    <div class="auth-modal-card">
+      <!-- Close Button -->
+      <button type="button" class="auth-modal-close" id="closeAuthModalBtn" aria-label="Close authentication dialog">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+
+      <!-- Modal Header -->
+      <div class="auth-modal-header">
+        <div class="auth-badge-tag">
+          <span class="auth-badge-dot"></span>
+          <span>ACADEMIC SCHOLAR PORTAL</span>
+        </div>
+        <h2 class="auth-modal-title" id="authModalTitle">Welcome to Smart Dictionary</h2>
+        <p class="auth-modal-subtitle" id="authModalSubtitle">
+          Sign in to synchronize your lexicon, track your search velocity, and save quiz mastery scores.
+        </p>
+      </div>
+
+      <!-- Segmented Tab Switcher (Sign In / Create Account) -->
+      <div class="auth-tabs-track" id="authTabsTrack" role="tablist">
+        <button type="button" class="auth-tab-btn active" id="tabLoginBtn" role="tab" aria-selected="true" aria-controls="loginForm">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+            <polyline points="10 17 15 12 10 7"/>
+            <line x1="15" y1="12" x2="3" y2="12"/>
+          </svg>
+          <span>Sign In</span>
+        </button>
+        <button type="button" class="auth-tab-btn" id="tabRegisterBtn" role="tab" aria-selected="false" aria-controls="registerForm">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="8.5" cy="7" r="4"/>
+            <line x1="20" y1="8" x2="20" y2="14"/>
+            <line x1="23" y1="11" x2="17" y2="11"/>
+          </svg>
+          <span>Create Account</span>
+        </button>
+      </div>
+
+      <!-- 1. LOGIN FORM -->
+      <form class="auth-form" id="loginForm" autocomplete="on">
+        <!-- Inline Alert / Status Banner -->
+        <div class="auth-alert hidden" id="loginAlert" role="alert"></div>
+
+        <!-- Email Field -->
+        <div class="auth-input-group">
+          <label for="loginEmail" class="auth-label">Collegiate Email Address</label>
+          <div class="auth-input-wrapper">
+            <span class="auth-input-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </span>
+            <input 
+              type="email" 
+              id="loginEmail" 
+              class="auth-input" 
+              placeholder="scholar@university.edu" 
+              required 
+              autocomplete="email"
+            />
+          </div>
+        </div>
+
+        <!-- Password Field -->
+        <div class="auth-input-group">
+          <div class="auth-label-row">
+            <label for="loginPassword" class="auth-label">Password</label>
+          </div>
+          <div class="auth-input-wrapper">
+            <span class="auth-input-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </span>
+            <input 
+              type="password" 
+              id="loginPassword" 
+              class="auth-input" 
+              placeholder="••••••••" 
+              required 
+              autocomplete="current-password"
+            />
+            <button type="button" class="auth-toggle-pwd-btn" id="toggleLoginPwdBtn" aria-label="Toggle password visibility">
+              <svg class="icon-eye-open" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="auth-submit-btn" id="loginSubmitBtn">
+          <span class="btn-text">Sign In to Lexicon</span>
+          <svg class="btn-arrow-icon" viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="10" x2="16" y2="10"/>
+            <polyline points="10 4 16 10 10 16"/>
+          </svg>
+          <span class="btn-spinner hidden"></span>
+        </button>
+
+        <!-- Switch prompt -->
+        <div class="auth-footer-prompt">
+          <span>New to Smart Dictionary?</span>
+          <button type="button" class="auth-link-btn" id="switchToRegisterLink">Create an account</button>
+        </div>
+      </form>
+
+      <!-- 2. REGISTER FORM -->
+      <form class="auth-form hidden" id="registerForm" autocomplete="on">
+        <!-- Inline Alert / Status Banner -->
+        <div class="auth-alert hidden" id="registerAlert" role="alert"></div>
+
+        <!-- Full Name Field -->
+        <div class="auth-input-group">
+          <label for="registerName" class="auth-label">Full Name</label>
+          <div class="auth-input-wrapper">
+            <span class="auth-input-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </span>
+            <input 
+              type="text" 
+              id="registerName" 
+              class="auth-input" 
+              placeholder="e.g. Alex Morgan" 
+              required 
+              autocomplete="name"
+            />
+          </div>
+        </div>
+
+        <!-- Email Field -->
+        <div class="auth-input-group">
+          <label for="registerEmail" class="auth-label">Collegiate Email Address</label>
+          <div class="auth-input-wrapper">
+            <span class="auth-input-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </span>
+            <input 
+              type="email" 
+              id="registerEmail" 
+              class="auth-input" 
+              placeholder="scholar@university.edu" 
+              required 
+              autocomplete="email"
+            />
+          </div>
+        </div>
+
+        <!-- Password Field -->
+        <div class="auth-input-group">
+          <label for="registerPassword" class="auth-label">Password</label>
+          <div class="auth-input-wrapper">
+            <span class="auth-input-icon">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+            </span>
+            <input 
+              type="password" 
+              id="registerPassword" 
+              class="auth-input" 
+              placeholder="At least 6 characters" 
+              minlength="6"
+              required 
+              autocomplete="new-password"
+            />
+            <button type="button" class="auth-toggle-pwd-btn" id="toggleRegisterPwdBtn" aria-label="Toggle password visibility">
+              <svg class="icon-eye-open" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+          </div>
+          <span class="auth-hint">Must contain at least 6 characters.</span>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="auth-submit-btn" id="registerSubmitBtn">
+          <span class="btn-text">Create Scholar Account</span>
+          <svg class="btn-arrow-icon" viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="10" x2="16" y2="10"/>
+            <polyline points="10 4 16 10 10 16"/>
+          </svg>
+          <span class="btn-spinner hidden"></span>
+        </button>
+
+        <!-- Switch prompt -->
+        <div class="auth-footer-prompt">
+          <span>Already have an account?</span>
+          <button type="button" class="auth-link-btn" id="switchToLoginLink">Sign in here</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- Notification Toast Container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- Main JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>
