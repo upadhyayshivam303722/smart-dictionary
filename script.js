@@ -130,12 +130,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggleRegisterPwdBtn = document.getElementById('toggleRegisterPwdBtn');
   const switchToLoginLink = document.getElementById('switchToLoginLink');
 
-  // Backend Auth, Favorites, Search History, Quiz & Dictionary Proxy Constants
-  const AUTH_API_URL = 'http://localhost:5000/api/auth';
-  const FAVORITES_API_URL = 'http://localhost:5000/api/favorites';
-  const HISTORY_API_URL = 'http://localhost:5000/api/history';
-  const QUIZ_API_URL = 'http://localhost:5000/api/quiz/scores';
-  const DICTIONARY_API_URL = 'http://localhost:5000/api/dictionary';
+  // Backend Live API Base URL & Feature Endpoints
+  const API_BASE_URL = 'https://smart-dictionary.onrender.com';
+  const AUTH_API_URL = `${API_BASE_URL}/api/auth`;
+  const FAVORITES_API_URL = `${API_BASE_URL}/api/favorites`;
+  const HISTORY_API_URL = `${API_BASE_URL}/api/history`;
+  const QUIZ_API_URL = `${API_BASE_URL}/api/quiz/scores`;
+  const DICTIONARY_API_URL = `${API_BASE_URL}/api/dictionary`;
   const USER_STORAGE_KEY = 'smart_dict_user';
 
   // State Variables
@@ -632,7 +633,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // --------------------------------------------------------------------------
   /**
    * Fetches word data dynamically via Node/Express Backend Proxy:
-   * http://localhost:5000/api/dictionary/{word}
+   * https://smart-dictionary.onrender.com/api/dictionary/{word}
    *
    * @param {string} word - English term to look up
    */
@@ -2787,6 +2788,40 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  /**
+   * Fetches user's quiz scores history from MongoDB backend
+   */
+  async function fetchUserQuizScores(userId) {
+    if (!userId) return [];
+    try {
+      const response = await fetch(`${QUIZ_API_URL}/${userId}`);
+      if (response.ok) {
+        const data = await response.json();
+        return data.scores || [];
+      }
+    } catch (error) {
+      console.warn('[Smart Dictionary] Fetch quiz scores network error:', error);
+    }
+    return [];
+  }
+
+  /**
+   * Fetches user's latest quiz score from MongoDB backend
+   */
+  async function fetchLatestQuizScore(userId) {
+    if (!userId) return null;
+    try {
+      const response = await fetch(`${QUIZ_API_URL}/${userId}/latest`);
+      if (response.ok) {
+        const data = await response.json();
+        return data.latestScore || null;
+      }
+    } catch (error) {
+      console.warn('[Smart Dictionary] Fetch latest quiz score network error:', error);
+    }
+    return null;
+  }
+
   // --------------------------------------------------------------------------
   // 15. AUDIO PRONUNCIATION (API Audio + Web Speech API Fallback)
   // --------------------------------------------------------------------------
@@ -3317,7 +3352,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     } catch (err) {
       console.error('Registration API Error:', err);
-      showAuthAlert('register', 'Could not connect to backend server at http://localhost:5000. Please ensure the server is running.', 'error');
+      showAuthAlert('register', 'Could not connect to backend server. Please ensure the service is reachable and try again.', 'error');
     } finally {
       setBtnLoading(registerSubmitBtn, false, 'Creating account...', 'Create Scholar Account');
     }
@@ -3377,7 +3412,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     } catch (err) {
       console.error('Login API Error:', err);
-      showAuthAlert('login', 'Could not connect to backend server at http://localhost:5000. Please ensure the server is running.', 'error');
+      showAuthAlert('login', 'Could not connect to backend server. Please ensure the service is reachable and try again.', 'error');
     } finally {
       setBtnLoading(loginSubmitBtn, false, 'Signing in...', 'Sign In to Lexicon');
     }
